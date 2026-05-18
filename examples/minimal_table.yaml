@@ -1,0 +1,59 @@
+version: 1
+vars:
+  project_name: "베스트ST"
+  date: "2026-04-23"
+table:
+  border:
+    style: solid
+    width_pt: 0.5
+    color: "#000000"
+  cell_padding_pt: 4
+  # A4 default content area ≈ 425pt. Keep column sum below that to avoid overflow.
+  columns:
+    - { width_pt: 80 }
+    - { width_pt: 160 }
+    - { width_pt: 140 }
+  rows:
+    - { height_pt: 28 }
+    - { height_pt: 96 }
+    - { height_pt: 160 }
+  cells:
+    - row: 0
+      col: 0
+      colspan: 3
+      text: "{{project_name}} 현장야장"
+      style:
+        size_pt: 14
+        weight: bold
+        align: center
+        bg: "#EEEEEE"
+    - row: 1
+      col: 0
+      text: "촬영일자"
+      style:
+        align: center
+        weight: bold
+    - row: 1
+      col: 1
+      text: "{{date}}"
+      placeholder: shoot_date
+    - row: 1
+      col: 2
+      image:
+        path: "fixtures/site_small.png"
+        w_pt: 120
+        h_pt: 70
+      placeholder: logo
+    - row: 2
+      col: 0
+      text: "현장사진"
+      style:
+        align: center
+        weight: bold
+    - row: 2
+      col: 1
+      colspan: 2
+      image:
+        path: "fixtures/site_small.png"
+        w_pt: 280
+        h_pt: 140

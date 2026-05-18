@@ -1,0 +1,26 @@
+[package]
+name = "hwp-maker"
+version = "0.1.0"
+edition = "2021"
+description = "HWP table generator / template filler CLI on top of rhwp"
+
+[dev-dependencies]
+tempfile = "3"
+
+[dependencies]
+rhwp = { git = "https://github.com/edwardkim/rhwp.git", rev = "c2e8a3461de800a02f76127ff4797bade1d4e532" }
+anyhow = "1"
+thiserror = "1"
+clap = { version = "4", features = ["derive"] }
+serde = { version = "1", features = ["derive"] }
+serde_yaml = "0.9"
+serde_json = "1"
+base64 = "0.22"
+image = { version = "0.25", default-features = false, features = ["png", "jpeg"] }
+
+[profile.dev]
+opt-level = 0
+
+[profile.release]
+opt-level = 3
+lto = "thin"

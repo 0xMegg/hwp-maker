@@ -1,0 +1,7 @@
+version: 1
+fields:
+  shoot_date: "2026-04-23 14:30"
+  logo:
+    image: "fixtures/site_small.png"
+    w_pt: 120
+    h_pt: 70

@@ -1,0 +1,39 @@
+version: 1
+vars:
+  project_name: "베스트ST"
+  date: "2026-04-23"
+table:
+  border:
+    style: solid
+    width_pt: 0.5
+    color: "#000000"
+  cell_padding_pt: 4
+  columns:
+    - { width_pt: 80 }
+    - { width_pt: 160 }
+    - { width_pt: 140 }
+  rows:
+    - { height_pt: 28 }
+    - { height_pt: 50 }
+  cells:
+    - row: 0
+      col: 0
+      colspan: 3
+      text: "{{project_name}} 텍스트 전용 표"
+      style:
+        size_pt: 14
+        weight: bold
+        align: center
+        bg: "#EEEEEE"
+    - row: 1
+      col: 0
+      text: "촬영일자"
+      style:
+        align: center
+        weight: bold
+    - row: 1
+      col: 1
+      text: "{{date}}"
+    - row: 1
+      col: 2
+      text: "베스트ST 현장"

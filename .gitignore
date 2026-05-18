@@ -1,0 +1,12 @@
+# Rust build artifacts
+/target/
+
+# Local output
+/out/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+.DS_Store
+examples/fixtures/site.png
