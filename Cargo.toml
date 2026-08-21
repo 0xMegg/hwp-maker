@@ -3,6 +3,11 @@ name = "hwp-maker"
 version = "0.1.0"
 edition = "2021"
 description = "HWP table generator / template filler CLI on top of rhwp"
+license = "MIT"
+repository = "https://github.com/0xMegg/hwp-maker"
+readme = "README.md"
+keywords = ["hwp", "document", "template", "cli"]
+categories = ["command-line-utilities", "text-processing"]
 
 [dev-dependencies]
 tempfile = "3"

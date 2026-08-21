@@ -1,8 +1,8 @@
-# HWP CRUD via rhwp — Portable Guide
+# HWP CRUD via rhwp — 기술 구현 가이드
 
-다른 머신·다른 프로젝트·다른 Claude 세션에서 HWP/HWPX 문서를 프로그래밍적으로 다룰 때 컨텍스트로 쓰는 자체완결 가이드.
+다른 머신이나 프로젝트에서 HWP/HWPX 문서를 프로그래밍적으로 다룰 때 참고할 수 있는 자체완결 가이드.
 
-한컴독스 호환까지 검증된 워크어라운드 8개와 즉시 쓸 수 있는 hwp-maker 의 GitHub 위치를 담는다. **이 문서를 새 머신/세션의 컨텍스트로 주면 Claude 가 cold start 로도 같은 결과를 재현할 수 있다.**
+한컴독스 호환까지 검증된 워크어라운드 8개와 `hwp-maker`를 다른 환경에서 사용하는 방법을 담는다.
 
 ## 0. 위치
 
@@ -86,7 +86,7 @@ hwp-maker delete picture --file f.hwp --table 0 --cell N  --out o.hwp
 ```yaml
 version: 1
 vars:                                    # {{name}} 텍스트 치환 (placeholder 셀은 예외)
-  project_name: "베스트ST"
+  project_name: "현장 기록"
   date: "2026-04-23"
 table:
   border:
@@ -204,29 +204,18 @@ hwp-maker 는 라이브러리로 import 해서 그 위에 새 기능을 쌓는 �
 - `src/lib.rs` 의 4개 entry function (`build`, `fill`, `read_as_json`, `delete::*`) 을 그대로 wrapper 함수에서 호출
 - 각각 input/output 이 `&Path` 라서 임시 디렉터리 + multipart 업로드 형태로 wrap 하기 쉬움
 
-## 9. 다른 Claude 세션 / 머신에서 활용
+## 9. 다른 프로젝트 / 머신에서 활용
 
-### 옵션 A: 컨텍스트 한 줄로 가이드 위치만 알려주기
+### 옵션 A: 기술 문서를 구현 컨텍스트로 제공
 ```
-hwp 파일 다뤄야 함. https://github.com/0xMegg/hwp-maker — docs/PORTABLE_GUIDE.md 읽고 진행해.
-8개 rhwp 버그 워크어라운드가 이미 다 들어있으니 재구현하지 말고 라이브러리로 import 해서 써.
+HWP 파일을 다루려면 https://github.com/0xMegg/hwp-maker 의
+docs/PORTABLE_GUIDE.md를 참고한다. 기존 호환성 보정을 재사용한다.
 ```
 
-### 옵션 B: 새 프로젝트의 Claude 메모리에 영구 등록
+### 옵션 B: 새 프로젝트의 참고 문서로 보관
 ```sh
-# 새 작업 폴더의 슬러그 (cwd 의 / 를 - 로)
-NEW_SLUG="-Users-mero-projects-foo"   # 예시
-
-mkdir -p ~/.claude/projects/${NEW_SLUG}/memory/
-
-# 가이드 파일을 복사하거나, git 으로 가져오기
 curl -fsSL https://raw.githubusercontent.com/0xMegg/hwp-maker/main/docs/PORTABLE_GUIDE.md \
-  > ~/.claude/projects/${NEW_SLUG}/memory/reference_hwp_crud.md
-
-# MEMORY.md 에 인덱스 추가
-cat >> ~/.claude/projects/${NEW_SLUG}/memory/MEMORY.md << 'EOF'
-- [HWP CRUD via rhwp](reference_hwp_crud.md) — github.com/0xMegg/hwp-maker, 8개 rhwp 버그·워크어라운드, CRUD 예제
-EOF
+  > docs/reference_hwp_crud.md
 ```
 
 ### 옵션 C: Cargo dep (Rust 프로젝트인 경우)
